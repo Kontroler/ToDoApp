@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:todoapp="clr-namespace:ToDoApp.Views"
+            x:Class="ToDoApp.Views.MainPage"
+      
+             Title="{Binding Title}">
+
+    <todoapp:InProgressListViewPage Title="In progress"></todoapp:InProgressListViewPage>
+    <todoapp:CompletedListViewPage Title="Completed"></todoapp:CompletedListViewPage>
+</TabbedPage>
