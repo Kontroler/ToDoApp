@@ -26,11 +26,26 @@ namespace ToDoApp.Persistence.Managers
 
         public async Task<ToDo> GetAsync(int id)
         {
-            return await _database.Table<ToDo>().FirstOrDefaultAsync(x => x.Id == id);
+            return await _database.Table<ToDo>().FirstOrDefaultAsync(toDo => toDo.Id == id);
+        }
+
+        public async Task<List<ToDo>> GetByStatusAsync(string statusName)
+        {
+            var toDoList = await _database.Table<ToDo>().Where(toDo => toDo.Status.Name == statusName).ToListAsync();
+            return toDoList;
         }
 
         public async Task<int> SaveAsync(ToDo entity)
         {
+            var status = _database.Table<ToDoStatus>().FirstOrDefaultAsync(x => x.Name == entity.Status.Name);
+            if (status == null)
+            {
+                await _database.InsertAsync(entity.Status);
+            }
+            else
+            {
+                entity.Status.Id = status.Id;
+            }
             return entity.Id != 0 ? await _database.UpdateAsync(entity) : await _database.InsertAsync(entity);
         }
     }
