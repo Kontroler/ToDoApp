@@ -5,6 +5,8 @@ using ToDoApp.Views;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Forms;
+using Prism.DryIoc;
+using ToDoApp.Domain;
 
 namespace ToDoApp
 {
@@ -28,6 +30,8 @@ namespace ToDoApp
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+
+            containerRegistry.GetContainer().AddDomain();
         }
     }
 }

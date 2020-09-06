@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ToDoApp.Persistence.Managers
 {
-    interface IBasePersistenceManger<T>
+    public interface IBasePersistenceManger<T>
     {
         Task<List<T>> GetAllAsync();
 

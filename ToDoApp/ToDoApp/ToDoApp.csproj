@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ToDoApp.Domain\ToDoApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Views\InProgressListViewPage.xaml.cs">
       <DependentUpon>InProgressListViewPage.xaml</DependentUpon>
     </Compile>

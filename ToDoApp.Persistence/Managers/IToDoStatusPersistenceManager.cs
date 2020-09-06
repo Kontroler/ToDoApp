@@ -2,7 +2,7 @@
 
 namespace ToDoApp.Persistence.Managers
 {
-    interface IToDoStatusPersistenceManager : IBasePersistenceManger<ToDoStatus>
+    public interface IToDoStatusPersistenceManager : IBasePersistenceManger<ToDoStatus>
     {
     }
 }

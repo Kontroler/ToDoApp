@@ -1,8 +1,11 @@
-﻿using ToDoApp.Persistence.Entities;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ToDoApp.Persistence.Entities;
 
 namespace ToDoApp.Persistence.Managers
 {
-    interface IToDoPersistenceManager : IBasePersistenceManger<ToDo>
+    public interface IToDoPersistenceManager : IBasePersistenceManger<ToDo>
     {
+        Task<List<ToDo>> GetByStatusAsync(string statusName);
     }
 }

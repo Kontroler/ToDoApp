@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ToDoApp.Domain.Models
+﻿namespace ToDoApp.Domain.Models
 {
-    public class ToDoItemStatus
+    public enum ToDoItemStatus
     {
-        public int Id { get; set; }
-        public StatusName Name { get; set; }
-
-        public enum StatusName
-        {
-            InProgress, Done
-        }
+        InProgress, Done
     }
 }
