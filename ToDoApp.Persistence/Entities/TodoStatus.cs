@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ToDoApp.Persistence.Entities
 {
-    [Table("todo")]
+    [Table("todo_status")]
     public class ToDoStatus
     {
         [PrimaryKey, AutoIncrement]
@@ -14,7 +14,7 @@ namespace ToDoApp.Persistence.Entities
         [Column("name")]
         public string Name { get; set; }
 
-        [OneToMany]
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<ToDo> ToDos { get; set; }
     }
 }

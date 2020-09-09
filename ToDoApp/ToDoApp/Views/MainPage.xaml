@@ -4,7 +4,7 @@
             xmlns:todoapp="clr-namespace:ToDoApp.Views"
             x:Class="ToDoApp.Views.MainPage"
       
-             Title="{Binding Title}">
+            Title="{Binding Title}">
 
     <todoapp:InProgressListViewPage Title="In progress"></todoapp:InProgressListViewPage>
     <todoapp:CompletedListViewPage Title="Completed"></todoapp:CompletedListViewPage>

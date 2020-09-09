@@ -30,6 +30,7 @@ namespace ToDoApp
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<InProgressListViewPage, InProgressListViewModel>();
 
             containerRegistry.GetContainer().AddDomain();
         }
