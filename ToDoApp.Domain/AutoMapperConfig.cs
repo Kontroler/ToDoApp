@@ -14,7 +14,7 @@ namespace ToDoApp.Domain
                 cfg.CreateMap<ToDo, ToDoItem>()
                     .ForMember(dest => dest.Status, opt => opt.MapFrom(x => MapStatus(x.Status.Name)));
                 cfg.CreateMap<ToDoItem, ToDo>()
-                    .ForMember(dest => dest.Status.Name, opt => opt.MapFrom(x => x.Status.ToString()));
+                    .ForPath(dest => dest.Status.Name, opt => opt.MapFrom(x => x.Status.ToString()));
             });
 
             return config;

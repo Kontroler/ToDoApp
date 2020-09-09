@@ -6,33 +6,33 @@ using ToDoApp.Persistence.Entities;
 
 namespace ToDoApp.Persistence
 {
-    public class ToDoAppDatabase: IToDoAppDatabase
+    public class ToDoAppDatabase : IToDoAppDatabase
     {
-        readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
-        {
-            return new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        });
-
+        private readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
+          {
+              return new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+          });
 
         public SQLiteAsyncConnection Database => lazyInitializer.Value;
-        bool initialized = false;
+        private bool initialized = false;
 
         public ToDoAppDatabase()
         {
             InitializeAsync().SafeFireAndForget(false);
         }
 
-        async Task InitializeAsync()
+        private async Task InitializeAsync()
         {
             if (!initialized)
             {
                 if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(ToDo).Name))
                 {
-                    await Database.CreateTableAsync(typeof(ToDo), CreateFlags.None).ConfigureAwait(false);
+                    Database.CreateTableAsync<ToDo>().Wait();
                 }
                 if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(ToDoStatus).Name))
                 {
-                    await Database.CreateTableAsync(typeof(ToDoStatus), CreateFlags.None).ConfigureAwait(false);
+                    Database.CreateTableAsync<ToDoStatus>().Wait();
+                    //await Database.CreateTableAsync(typeof(ToDoStatus), CreateFlags.None).ConfigureAwait(false);
                 }
                 initialized = true;
             }

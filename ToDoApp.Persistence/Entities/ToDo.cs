@@ -21,7 +21,7 @@ namespace ToDoApp.Persistence.Entities
         [Column("status_id")]
         public int StatusId { get; set; }
 
-        [ManyToOne]
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
         public ToDoStatus Status { get; set; }
     }
 }

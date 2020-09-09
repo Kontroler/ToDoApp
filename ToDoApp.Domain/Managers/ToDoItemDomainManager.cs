@@ -42,7 +42,7 @@ namespace ToDoApp.Domain.Managers
         public async Task<int> SaveAsync(ToDoItem item)
         {
             var toDo = _mapper.Map<ToDo>(item);
-            return await _toDoPeristenceManager.DeleteAsync(toDo);
+            return await _toDoPeristenceManager.SaveAsync(toDo);
         }
     }
 }
