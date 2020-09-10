@@ -1,11 +1,10 @@
-﻿using Prism.Navigation;
-using System;
+﻿using Prism.Commands;
+using Prism.Navigation;
 using System.Collections.ObjectModel;
-using System.Linq;
+using System.Windows.Input;
 using ToDoApp.Domain.Managers;
 using ToDoApp.Domain.Models;
 using ToDoApp.Extensions;
-using Xamarin.Forms.Internals;
 
 namespace ToDoApp.ViewModels
 {
@@ -14,6 +13,7 @@ namespace ToDoApp.ViewModels
         private readonly IToDoItemDomainManager _toDoItemDomainManager;
 
         public ObservableCollection<ToDoItem> ToDoItems { get; set; }
+        public ICommand ClickCommand { get; set; }
 
         public InProgressListViewModel(INavigationService navigationService, IToDoItemDomainManager toDoItemDomainManager)
         : base(navigationService)
@@ -21,14 +21,20 @@ namespace ToDoApp.ViewModels
             Title = "ToDo";
             _toDoItemDomainManager = toDoItemDomainManager;
             ToDoItems = new ObservableCollection<ToDoItem>();
-
-            LoadItems();
+      
+            ClickCommand = new DelegateCommand(NavigateToEditToDoItem);
         }
 
-        private async void LoadItems()
+        public async void LoadItems()
         {
             var items = await _toDoItemDomainManager.GetByStatusAsync(ToDoItemStatus.InProgress);
-            ToDoItems.AddRange(items);            
+            ToDoItems.Clear();
+            ToDoItems.AddRange(items);
+        }
+
+        private async void NavigateToEditToDoItem()
+        {
+            await NavigationService.NavigateAsync("EditToDoItemPage");
         }
     }
 }

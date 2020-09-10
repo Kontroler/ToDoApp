@@ -33,6 +33,7 @@ namespace ToDoApp
             containerRegistry.RegisterForNavigation<InProgressListViewPage, InProgressListViewModel>();
 
             containerRegistry.GetContainer().AddDomain();
+            containerRegistry.RegisterForNavigation<EditToDoItemPage, EditToDoItemPageViewModel>();
         }
     }
 }
