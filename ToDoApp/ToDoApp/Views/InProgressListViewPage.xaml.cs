@@ -7,9 +7,17 @@ namespace ToDoApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InProgressListViewPage : ContentPage
     {
+        private InProgressListViewModel ViewModel { get; set; }
         public InProgressListViewPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            ViewModel = BindingContext as InProgressListViewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel.LoadItems();
         }
     }
 }

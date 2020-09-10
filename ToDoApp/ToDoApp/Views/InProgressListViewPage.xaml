@@ -24,6 +24,9 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Text="Button test" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" />
+        <Button Text="Add item"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Command="{Binding ClickCommand}" />
     </StackLayout>
 </ContentPage>
