@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ToDoApp.Views.InProgressListViewPage">
     <StackLayout Orientation="Vertical">
@@ -13,20 +14,31 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding Description}"
-                   Style="{DynamicResource ListItemTextStyle}" />
-                            <Label Text="{Binding Date}"
-                   Style="{DynamicResource ListItemDetailTextStyle}" />
-                        </StackLayout>
+                        <input:CheckBox Type="Cross"
+                                        CheckChanged="CheckboxCheckChanged"
+                                        CommandParameter="{Binding .}">
+                            <StackLayout>
+                                <Label Text="{Binding Description}"
+                                       Style="{DynamicResource ListItemTextStyle}" />
+                                <Label Text="{Binding Date}"
+                                       Style="{DynamicResource ListItemDetailTextStyle}" />
+                            </StackLayout>
+                        </input:CheckBox>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Text="Add item"
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Complete"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Center"
-                Command="{Binding ClickCommand}" />
+                Command="{Binding CompleteCommand}" />
+
+            <Button Text="Add item"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Command="{Binding AddItemCommand}" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

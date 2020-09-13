@@ -44,5 +44,11 @@ namespace ToDoApp.Domain.Managers
             var toDo = _mapper.Map<ToDo>(item);
             return await _toDoPeristenceManager.SaveAsync(toDo);
         }
+
+        public async Task<int> UpdateAllAsync(IEnumerable<ToDoItem> toDoItems)
+        {
+            var toDoList = toDoItems.Select(toDo => _mapper.Map<ToDo>(toDo)).ToList();
+            return await _toDoPeristenceManager.UpdateAllAsync(toDoList);
+        }
     }
 }
