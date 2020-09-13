@@ -1,12 +1,12 @@
 using Prism;
+using Prism.DryIoc;
 using Prism.Ioc;
+using ToDoApp.Domain;
 using ToDoApp.ViewModels;
 using ToDoApp.Views;
-using Xamarin.Essentials.Interfaces;
 using Xamarin.Essentials.Implementation;
+using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
-using Prism.DryIoc;
-using ToDoApp.Domain;
 
 namespace ToDoApp
 {
@@ -28,11 +28,12 @@ namespace ToDoApp
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
+            containerRegistry.GetContainer().AddDomain();
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<InProgressListViewPage, InProgressListViewModel>();
-
-            containerRegistry.GetContainer().AddDomain();
+            containerRegistry.RegisterForNavigation<CompletedListViewPage, CompletedListViewModel>();
             containerRegistry.RegisterForNavigation<EditToDoItemPage, EditToDoItemPageViewModel>();
         }
     }
