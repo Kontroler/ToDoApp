@@ -7,5 +7,6 @@ namespace ToDoApp.Persistence.Managers
     public interface IToDoPersistenceManager : IBasePersistenceManger<ToDo>
     {
         Task<List<ToDo>> GetByStatusAsync(string statusName);
+        Task<int> UpdateAllAsync(List<ToDo> toDoList);
     }
 }

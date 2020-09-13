@@ -13,5 +13,7 @@ namespace ToDoApp.Domain.Managers
         Task<int> SaveAsync(ToDoItem item);
 
         Task<int> DeleteAsync(ToDoItem item);
+
+        Task<int> UpdateAllAsync(IEnumerable<ToDoItem> toDoItems);
     }
 }
